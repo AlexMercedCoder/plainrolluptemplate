@@ -6,7 +6,10 @@ import { terser } from "rollup-plugin-terser";
 import htmlTemplate from "rollup-plugin-generate-html-template";
 import scss from "rollup-plugin-scss";
 import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
 import babel from "@rollup/plugin-babel";
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
 
 ///////////////////////
 // Config Object - Production
@@ -30,7 +33,13 @@ const config = {
       // Filename to write all styles to
       output: "build/bundle.css",
     }),
-    babel({ babelHelpers: "bundled" }),
+    resolve({
+      jsnext: true,
+      main: true,
+      browser: true,
+    }),
+    commonjs(),
+    babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
   ],
 };
 
@@ -55,13 +64,20 @@ const develop = {
       // Filename to write all styles to
       output: "dev/bundle.css",
     }),
-    babel({ babelHelpers: "bundled" }),
+    babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
+    resolve({
+      jsnext: true,
+      main: true,
+      browser: true,
+    }),
+    commonjs(),
     serve({
       open: true,
       contentBase: "dev",
       host: "localhost",
       port: process.env.PORT,
     }),
+    livereload("dev"),
   ],
 };
 
