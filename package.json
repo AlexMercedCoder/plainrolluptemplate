@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production rollup --config",
-    "dev": "NODE_ENV=development PORT=5000 rollup --config --watch"
+    "build": "cross-env NODE_ENV=production rollup --config",
+    "dev": "cross-env NODE_ENV=development PORT=5000 rollup --config --watch"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "cross-env": "^7.0.2",
     "lodash": "^4.17.20",
     "rollup": "^2.27.1"
   },
