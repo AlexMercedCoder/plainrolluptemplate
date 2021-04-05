@@ -32,6 +32,7 @@ const config = {
       output: true,
       // Filename to write all styles to
       output: "build/bundle.css",
+      sass: require("sass"),
     }),
     resolve({
       jsnext: true,
@@ -63,6 +64,7 @@ const develop = {
       output: true,
       // Filename to write all styles to
       output: "dev/bundle.css",
+      sass: require("sass"),
     }),
     babel({ babelHelpers: "bundled", exclude: "node_modules/**" }),
     resolve({
